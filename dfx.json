@@ -1,0 +1,21 @@
+{
+  "canisters": {
+    "btest": {
+      "main": "src/btest/main.mo",
+      "type": "motoko"
+    }
+  },
+  "defaults": {
+    "build": {
+      "output": "canisters/"
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "localhost:8000",
+      "type": "ephemeral"
+    }
+  },
+  "dfx": "0.6.26",
+  "version": 1
+}
