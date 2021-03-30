@@ -14,15 +14,13 @@ function App() {
       // Since the response is a BigNumber we need to stringify it
       setVal(response.toString());
     });
-    // setVal(1);
   }, []);
 
   const onIncrement = useCallback(async () => {
     // Call another public function
     await btest.increment();
     // Get latest value from canister again
-    setVal(2);
-    // setVal((await backend.getValue()).toString());
+    setVal((await btest.getValue()).toString());
   }, []);
 
 

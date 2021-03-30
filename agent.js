@@ -1,7 +1,11 @@
-import * as default_ic from "@dfinity/agent";
-import { Ed25519KeyIdentity } from "@dfinity/authentication";
+import {
+  AnonymousIdentity,
+  HttpAgent,
+  makeExpiryTransform,
+  makeNonceTransform,
+} from '@dfinity/agent'
 
-const { HttpAgent } = default_ic;
+import { Ed25519KeyIdentity } from "@dfinity/authentication";
 
 const LOCAL_KEY_ID = "testaKey";
 
@@ -16,17 +20,23 @@ const LOCAL_KEY_ID = "testaKey";
   } else {
     keyIdentity = Ed25519KeyIdentity.fromJSON(keyMaybe);
   }
-  let agent = new HttpAgent({
-    identity: keyIdentity,
-  });
 
-  agent.addTransform(default_ic.makeNonceTransform());
-  agent.addTransform(default_ic.makeExpiryTransform(5 * 60 * 1000));
+  const agentOptions = {
+    host: 'http://localhost:8000',
+    identity: keyIdentity,
+  }
+  let agent = new HttpAgent(agentOptions);
+
+  agent.addTransform(makeNonceTransform());
+  agent.addTransform(makeExpiryTransform(5 * 60 * 1000));
 
   // return agent;
 // };
-const ic = { ...default_ic, agent };
+const ic = { ...window.ic, agent };
 
-window.ic = ic;
+if (!(window.ic && window.ic.agent)) {
+  window.ic = ic
+}
 
 export { ic }
+
