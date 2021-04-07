@@ -3,19 +3,33 @@
     "btest": {
       "main": "src/btest/main.mo",
       "type": "motoko"
+    },
+    "frontend" : {
+      "dependencies": ["btest"],
+      "frontend": {
+        "entrypoint": "build/index.html"
+      },
+      "source": [
+        "build",
+         "src/assets"
+      ],
+      "type": "assets"
     }
   },
   "defaults": {
     "build": {
-      "output": "canisters/"
+      "output": "canisters",
+      "packtool": ""
     }
   },
+  "dfx": "0.7.0-beta.2",
   "networks": {
     "local": {
-      "bind": "localhost:8000",
+      "bind": "127.0.0.1:8000",
       "type": "ephemeral"
     }
   },
-  "dfx": "0.6.26",
   "version": 1
 }
+
+ 

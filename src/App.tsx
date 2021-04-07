@@ -1,26 +1,35 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import logo from './assets/logo.svg';
 import './App.css';
-import btest from "ic:canisters/btest";
 
+import { btest }  from './agent';
 
 function App() {
 
-  const [val, setVal] = useState(0);
+  const [val, setVal] = useState('0');
 
   useEffect(() => {
-    // Call a public function defined in the canister
+
+    console.log('AICI1');
+
+    // @ts-ignore
     btest.getValue().then((response: any) => {
-      // Since the response is a BigNumber we need to stringify it
+      console.log('AICI2');
+      console.log(response);
       setVal(response.toString());
     });
+
+    // setVal(0);
   }, []);
 
   const onIncrement = useCallback(async () => {
-    // Call another public function
+    // @ts-ignore
     await btest.increment();
-    // Get latest value from canister again
+    // @ts-ignore
     setVal((await btest.getValue()).toString());
+
+
+    // setVal(1);
   }, []);
 
 
