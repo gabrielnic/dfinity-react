@@ -2,6 +2,7 @@
   "name": "dfn-react-ts",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@dfinity/agent": "0.7.1",
     "@dfinity/authentication": "^0.6.28",

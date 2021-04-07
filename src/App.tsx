@@ -9,17 +9,11 @@ function App() {
   const [val, setVal] = useState('0');
 
   useEffect(() => {
-
-    console.log('AICI1');
-
     // @ts-ignore
     btest.getValue().then((response: any) => {
-      console.log('AICI2');
-      console.log(response);
       setVal(response.toString());
     });
 
-    // setVal(0);
   }, []);
 
   const onIncrement = useCallback(async () => {

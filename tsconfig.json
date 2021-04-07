@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
     "target": "es5",
     "lib": [
       "dom",
@@ -17,10 +18,13 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "noEmit": true
   },
   "include": [
     "src",
+    "./types/**/*"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

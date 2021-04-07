@@ -35,19 +35,14 @@ module.exports = {
             };
           }, {});
 
-          
-          // throw new Error('wdadaw');
-          
-
           return {
             ...webpackConfig,
-            mode: "development",
+            mode: "production",
             devtool: "source-map",
-            // index: path.join(__dirname, info.frontend.entrypoint).replace(/\.html$/, ".js"),
             plugins: [
               ...webpackConfig.plugins,
               new webpack.ProvidePlugin({
-                // 'dfx-generated' : [path.resolve(path.join(__dirname, 'src/agent.js')), 'dfx-generated'],
+                'dfx-generated' : [path.resolve(path.join(__dirname, 'src/agent.ts')), 'dfx-generated'],
               }),
             ],
             resolve: {

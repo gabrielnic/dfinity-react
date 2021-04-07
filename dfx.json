@@ -10,8 +10,7 @@
         "entrypoint": "build/index.html"
       },
       "source": [
-        "build",
-         "src/assets"
+        "build"
       ],
       "type": "assets"
     }

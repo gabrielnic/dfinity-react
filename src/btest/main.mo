@@ -1,11 +1,11 @@
 actor Test {
-    stable var currentValue : Text = "a";
+    stable var currentValue: Nat = 0;
 
     public func increment(): async () {
-        currentValue #= "a";
+        currentValue += 1;
     };
 
-    public query func getValue(): async Text {
+    public query func getValue(): async Nat {
         currentValue;
     };
 }
