@@ -42,7 +42,7 @@ module.exports = {
             plugins: [
               ...webpackConfig.plugins,
               new webpack.ProvidePlugin({
-                'dfx-generated' : [path.resolve(path.join(__dirname, 'src/agent.ts')), 'dfx-generated'],
+                Buffer: [require.resolve("buffer/"), "Buffer"],
               }),
             ],
             resolve: {

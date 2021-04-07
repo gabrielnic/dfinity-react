@@ -1,3 +1,26 @@
+# ReactJS Typescript Motoko Boilerplate using agent v 0.7.1 and DFX_VERSION=dfx 0.7.0-beta.2
+
+## Install 
+
+```
+yarn 
+```
+
+
+```
+./run.sh 
+```
+
+## Known Issues:
+
+```
+gyp error: run brew-update on mac or linux install build-essential
+```
+
+## See Issues tab for any existing bugs.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
