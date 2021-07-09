@@ -17,7 +17,7 @@
 ## About The Project
 Boilerplate ReactJS/Typescript with authentication to a local II 
 
-
+![screen-capture](https://user-images.githubusercontent.com/6564200/125112118-a9bc8d00-e0de-11eb-9b6b-c17bd9d18272.gif)
 <!-- GETTING STARTED -->
 ## Getting Started
 
