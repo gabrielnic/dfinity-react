@@ -1,69 +1,72 @@
-# ReactJS Typescript Motoko Boilerplate using agent v 0.7.1 and DFX_VERSION=dfx 0.7.0-beta.2
-
-## Install 
-
-```
-yarn 
-```
-
-
-```
-./run.sh 
-```
-
-## Known Issues:
-
-```
-gyp error: run brew-update on mac or linux install build-essential
-```
-
-## See Issues tab for any existing bugs.
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+ <a href="https://circleci.com/gh/badges/shields/tree/master">
+        <img src="https://img.shields.io/circleci/project/github/badges/shields/master" alt="build status"></a>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  
+  <h3 align="center">ReactJS Typescript Motoko Boilerplate + Authentication</h3>
 
-## Available Scripts
+</p>
 
-In the project directory, you can run:
+## About The Project
+Boilerplate ReactJS/Typescript with authentication to a local II 
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- GETTING STARTED -->
+## Getting Started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
 
-### `yarn test`
+### Installation
+1. Install Internet Identity locally from: https://github.com/dfinity/internet-identity
+2. Clone the repo
+   ```sh
+   git clone https://github.com/gabrielnic/dfinity-react
+   ```
+3. Install NPM packages
+   ```sh
+   yarn
+   ```
+4. Start dfx
+   ```sh
+   dfx start
+   ```
+5. Update `.env` with the II canister id eg: `Installing code for canister internet_identity, with canister_id rkp4c-7iaaa-aaaaa-aaaca-cai`   
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. Deploy
+   ```sh
+   dfx deploy
+   ```
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- USAGE EXAMPLES -->
+## Usage
+Copy front-end canister id from .dfx/local/canister_ids.json and replace in the url below
+ 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Navigate to http://<frontend_canister_id>.localhost:8000/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+<!-- CONTRIBUTING -->
+## Contributing
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<!-- LICENSE -->
+## License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Distributed under the MIT License. See `LICENSE` for more information.

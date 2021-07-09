@@ -1,49 +1,95 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import logo from './assets/logo.svg';
+import React, { useEffect, useState, useCallback, MouseEventHandler } from 'react';
+import dfn from './assets/dfn.svg';
 import './App.css';
 
-import { btest }  from './agent';
+import { getBackendActor }  from './agent';
+import { AuthClient } from "@dfinity/auth-client";
+
 
 function App() {
 
-  const [val, setVal] = useState('0');
-
+  const [val, setVal] = useState(0);
+  const [logged, setLogged] = useState(false);
+  const [identity, setIdentity] = useState('');
+  
   useEffect(() => {
-    // @ts-ignore
-    btest.getValue().then((response: any) => {
-      setVal(response.toString());
-    });
-
-  }, []);
+    getValue();
+    isAuth();
+  }, [identity]);
 
   const onIncrement = useCallback(async () => {
-    // @ts-ignore
-    await btest.increment();
-    // @ts-ignore
-    setVal((await btest.getValue()).toString());
+    const authClient = await AuthClient.create();
+    const ba = await getBackendActor(authClient);
+    const value = await ba.increment();
+    setVal(Number(value));
 
-
-    // setVal(1);
   }, []);
+
+  const isAuth = async () => {
+    const authClient = await AuthClient.create();
+    const isAuth =  await authClient.isAuthenticated();
+    if (isAuth) {
+      setLogged(true);
+    }
+  }
+
+  const whoami = async() => {
+    const authClient = await AuthClient.create();
+    const ba = await getBackendActor(authClient);
+    const value = await ba.whoami();
+    setIdentity(value.toText());
+  }
+
+  const getValue = async() => {
+    if (isAuth()) {
+      whoami();
+    }
+    const ba = await getBackendActor(null);
+    const val = await ba.getValue();
+    setVal(Number(val));
+  }
+  
+  const handleLogin = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const daysToAdd = 7;
+    const expiry =  Date.now() + (daysToAdd * 86400000);
+    const authClient = await AuthClient.create();
+    await authClient.login({
+        onSuccess: async () => {
+            const ba = await getBackendActor(authClient);
+            const principal = await ba.whoami();
+            setIdentity(principal.toText());
+            // eslint-disable-next-line no-restricted-globals
+            location.reload();
+        },
+        identityProvider: "http://localhost:8000?canisterId=" + process.env.REACT_APP_CANISTER_ID,
+        maxTimeToLive: BigInt(expiry * 1000000)
+    });
+}
 
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
         <h2>Value received from Dfinity: {val}</h2>
-        <button onClick={onIncrement}>Increment</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {!logged && 
+          <div>
+            <h5>In order to increase the counter you need to be logged in</h5>
+            <p>Log in with</p>
+            <button 
+            onClick={handleLogin} 
+            className="login-logo">
+            <img src={dfn}  alt="dfinity-login" />
+          </button>
+          </div>
+        }
+        {logged &&
+        <div>
+          <h5>Hi {identity}, you're logged in now!</h5>
+          <button onClick={onIncrement}>Increment</button>
+        </div> 
+          
+        }
       </header>
     </div>
   );

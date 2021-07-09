@@ -1,11 +1,11 @@
 {
   "canisters": {
-    "btest": {
-      "main": "src/btest/main.mo",
+    "test": {
+      "main": "src/test/main.mo",
       "type": "motoko"
     },
     "frontend" : {
-      "dependencies": ["btest"],
+      "dependencies": ["test"],
       "frontend": {
         "entrypoint": "build/index.html"
       },
@@ -21,7 +21,7 @@
       "packtool": ""
     }
   },
-  "dfx": "0.7.0-beta.2",
+  "dfx": "0.7.2",
   "networks": {
     "local": {
       "bind": "127.0.0.1:8000",

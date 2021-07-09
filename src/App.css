@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.login-logo {
+  margin: 0 auto;
+  text-align: center;
+  border: none;
+  background: none;
+  border: none !important;
+  cursor: grab;
+  background: none;
+  border-radius: 0;
+  outline: 0 !important;
+}
