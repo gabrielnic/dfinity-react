@@ -1,11 +1,15 @@
 {
   "name": "dfn-react-ts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@dfinity/agent": "0.7.1",
-    "@dfinity/authentication": "^0.6.28",
+    "@dfinity/agent": "0.9.1",
+    "@dfinity/auth-client": "0.9.1",
+    "@dfinity/authentication": "0.9.1",
+    "@dfinity/candid": "^0.9.1",
+    "@dfinity/identity": "0.9.1",
+    "@dfinity/principal": "^0.9.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

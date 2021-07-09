@@ -24,4 +24,5 @@ echo
 echo == Deploy.
 echo
 
-dfx deploy
+yarn start
+# dfx deploy
