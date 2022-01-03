@@ -1,32 +1,24 @@
-import { Actor, HttpAgent, ActorSubclass, HttpAgentOptions } from '@dfinity/agent';
-import { AuthClient } from '@dfinity/auth-client';
-import { idlFactory, canisterId } from 'dfx-generated/test';
-import type { Principal } from "@dfinity/principal";
+import { Actor, HttpAgent, ActorSubclass } from '@dfinity/agent';
+import { AuthClient } from "@dfinity/auth-client";
+import { _SERVICE } from "./declarations/test/test.did";
+import { createActor, canisterId } from "./declarations/test";
 
-// copy this from .dfx/local/canisters/test/test.d.ts
-export interface Test {
-  'getValue' : () => Promise<bigint>,
-  'increment' : () => Promise<bigint>,
-  'whoami' : () => Promise<Principal>,
-};
-
-let agentOptions = {};
-if (process.env.NODE_ENV === 'development') {
-  agentOptions = { ...agentOptions,  host: 'http://localhost:8000' };
-}
-
-export async function getBackendActor(authClient: AuthClient | null): Promise<ActorSubclass<Test>> {
-  if (authClient instanceof AuthClient) {
+export namespace BackendActor {
+  var authClient: AuthClient;
+  export async function setAuthClient(ac: AuthClient) {
+    authClient = ac;
+  }
+  export async function getBackendActor(): Promise<ActorSubclass<_SERVICE>> {
+    if (!authClient) {
+      authClient = await AuthClient.create();
+    }
     const identity = authClient.getIdentity();
-    agentOptions = { ...agentOptions, identity: identity as any }
+    const backendActor = createActor(canisterId as string, {
+      agentOptions: {
+        identity, 
+      }
+    });
+  
+    return backendActor;
   }
-  const agent = new HttpAgent(agentOptions);
-  // for local development only, this must not be used for production
-  if (process.env.NODE_ENV === 'development') {
-    await agent.fetchRootKey();
-  }
-
-  const backend = Actor.createActor<Test>(idlFactory, { agent, canisterId: canisterId });
-
-  return backend;
 };

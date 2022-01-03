@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, MouseEventHandler } from 'reac
 import dfn from './assets/dfn.svg';
 import './App.css';
 
-import { getBackendActor }  from './agent';
+import { BackendActor }  from './agent';
 import { AuthClient } from "@dfinity/auth-client";
 
 
@@ -18,8 +18,7 @@ function App() {
   }, [identity]);
 
   const onIncrement = useCallback(async () => {
-    const authClient = await AuthClient.create();
-    const ba = await getBackendActor(authClient);
+    const ba = await BackendActor.getBackendActor();
     const value = await ba.increment();
     setVal(Number(value));
 
@@ -34,17 +33,16 @@ function App() {
   }
 
   const whoami = async() => {
-    const authClient = await AuthClient.create();
-    const ba = await getBackendActor(authClient);
+    const ba = await BackendActor.getBackendActor();
     const value = await ba.whoami();
     setIdentity(value.toText());
   }
 
   const getValue = async() => {
-    if (isAuth()) {
+    if (logged) {
       whoami();
     }
-    const ba = await getBackendActor(null);
+    const ba = await BackendActor.getBackendActor();
     const val = await ba.getValue();
     setVal(Number(val));
   }
@@ -56,7 +54,8 @@ function App() {
     const authClient = await AuthClient.create();
     await authClient.login({
         onSuccess: async () => {
-            const ba = await getBackendActor(authClient);
+            BackendActor.setAuthClient(authClient);
+            const ba = await BackendActor.getBackendActor();
             const principal = await ba.whoami();
             setIdentity(principal.toText());
             // eslint-disable-next-line no-restricted-globals
