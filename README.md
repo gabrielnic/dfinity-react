@@ -11,6 +11,8 @@
 <p align="center">
   
   <h3 align="center">ReactJS Typescript Motoko Boilerplate + Authentication</h3>
+  <br />
+  <strong>Updated for dfx 0.8.5-beta.0 </strong>
 
 </p>
 
