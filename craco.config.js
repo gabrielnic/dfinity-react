@@ -55,8 +55,7 @@ module.exports = {
     plugins: [
       new webpack.EnvironmentPlugin({
         DFX_NETWORK: process.env.REACT_APP_DFX_NETWORK,
-        BACKEND_CANISTER_ID: canisters["backend"],
-        CDN_CANISTER_ID: canisters["cdn"],
+        TEST_CANISTER_ID: canisters["test"],
         NODE_ENV: isDevelopment,
       }),
     ],
