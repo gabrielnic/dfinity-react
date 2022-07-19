@@ -12,7 +12,7 @@
   
   <h3 align="center">ReactJS Typescript Motoko Boilerplate + Authentication</h3>
   <br />
-  <strong>Updated for dfx 0.8.6 </strong>
+  <strong>Updated for dfx 0.11.0 and @dfinity packages: 0.11.3 </strong>
 
 </p>
 
@@ -40,7 +40,8 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    dfx start
    ```
-5. Update `.env` with the II canister id eg: `Installing code for canister internet_identity, with canister_id rkp4c-7iaaa-aaaaa-aaaca-cai`   
+5. Update `.env` with the II canister id eg: `Installing code for canister internet_identity, with the canister_id from internet-identity/.dfx/local/canister_ids.json -> local:  eg: rwlgt-iiaaa-aaaaa-aaaaa-cai
+  `   
 
 6. Deploy
    ```sh

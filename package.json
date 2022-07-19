@@ -4,12 +4,12 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@dfinity/agent": "0.10.2",
-    "@dfinity/auth-client": "0.10.2",
-    "@dfinity/authentication": "0.10.2",
-    "@dfinity/candid": "^0.10.2",
-    "@dfinity/identity": "0.10.2",
-    "@dfinity/principal": "^0.10.2",
+    "@dfinity/agent": "0.11.3",
+    "@dfinity/auth-client": "0.11.3",
+    "@dfinity/authentication": "0.11.3",
+    "@dfinity/candid": "0.11.3",
+    "@dfinity/identity": "0.11.3",
+    "@dfinity/principal": "0.11.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -23,9 +23,7 @@
   "scripts": {
     "start": "PORT=3001 craco start --mode development --env development --network=local",
     "build": "craco build",
-    "test": "craco test",
-    "prestart": "npm run copy:types",
-    "copy:types": "rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --delete src/declarations"
+    "test": "craco test"
   },
   "eslintConfig": {
     "extends": [

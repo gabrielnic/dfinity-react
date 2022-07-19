@@ -4,6 +4,7 @@ const path = require('path');
 let localCanisters, prodCanisters, canisters;
 
 let localEnv = true;
+let network = 'local';
 
 function initCanisterIds() {
   try {
@@ -18,9 +19,7 @@ function initCanisterIds() {
     console.log("No production canister_ids.json found. Continuing with local");
   }
 
-  const network =
-    process.env.REACT_APP_DFX_NETWORK ||
-    (process.env.REACT_APP_DFX_NETWORK === "production" && !localEnv ? "ic" : "local");
+  network = process.env.NODE_ENV === "production" && !localEnv ? "ic" : "local";
 
   canisters = network === "local" || localEnv ? localCanisters : prodCanisters;
   for (const canister in canisters) {
@@ -29,9 +28,9 @@ function initCanisterIds() {
   }
 };
 
-initCanisterIds();
-
 const isDevelopment = process.env.NODE_ENV !== "production" || localEnv;
+
+initCanisterIds();
 
 const asset_entry = path.join(
   "src",
@@ -54,7 +53,7 @@ module.exports = {
     alias: {},
     plugins: [
       new webpack.EnvironmentPlugin({
-        DFX_NETWORK: process.env.REACT_APP_DFX_NETWORK,
+        DFX_NETWORK: network,
         TEST_CANISTER_ID: canisters["test"],
         NODE_ENV: isDevelopment,
       }),

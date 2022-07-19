@@ -5,7 +5,14 @@ echo
 echo == Create.
 echo
 
-# dfx canister create --all
+dfx canister create --all
+
+
+echo
+echo == Generate.
+echo
+
+dfx generate test
 
 echo
 echo == Build.
