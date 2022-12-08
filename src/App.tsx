@@ -61,7 +61,7 @@ function App() {
             // eslint-disable-next-line no-restricted-globals
             location.reload();
         },
-        identityProvider: "http://localhost:8000?canisterId=" + process.env.REACT_APP_CANISTER_ID,
+        identityProvider: "http://localhost:4943?canisterId=" + process.env.REACT_APP_CANISTER_ID,
         maxTimeToLive: BigInt(expiry * 1000000)
     });
 }

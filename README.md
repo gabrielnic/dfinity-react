@@ -12,7 +12,8 @@
   
   <h3 align="center">ReactJS Typescript Motoko Boilerplate + Authentication</h3>
   <br />
-  <strong>Updated for dfx 0.11.0 and @dfinity packages: 0.11.3 </strong>
+  <strong>Node version: v16.18.1 </strong>
+  <strong>Updated for dfx 0.12.1 and @dfinity packages: 0.14.0 </strong>
 
 </p>
 
@@ -47,8 +48,13 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    dfx deploy
    ```
-
-
+7. Manual Deploy (replaces point 6)
+  ```
+  dfx canister create --all
+  dfx generate 
+  dfx build
+  dfx canister install --all
+  ```
 <!-- USAGE EXAMPLES -->
 ## Usage
 Copy front-end canister id from .dfx/local/canister_ids.json and replace in the url below
